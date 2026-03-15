@@ -42,13 +42,15 @@ instr2.source_register1 = 1; // ThreadID
 instr2.source_register2 = 0; // Matrix Width (pre-loaded)
 instr2.destination_register = 2; // Store RowIdx in Reg 2
 program.push_back(instr2);
+```
+
+## CMake and how to run program
 
 This project uses CMake for dependency management and compilation.
 
 Prerequisites:
 
 A C++17 compatible compiler (GCC, Clang, or MSVC)
-
 CMake (v3.10+)
 
 Steps:
@@ -56,15 +58,58 @@ Steps:
 Clone the repository and navigate to the project directory.
 
 Configure the build environment:
-
-Bash
+```Bash
 cmake -S . -B build
 Compile the executable:
+```
 
-Bash
+Compile the executable:
+```Bash
 cmake --build build
 Run the simulation:
+```
 
+Finally, run the program:
 Linux/macOS: ./build/virtual_gpu
-
 Windows: .\build\Debug\virtual_gpu.exe
+
+
+## Theoretical Output
+
+Within `kernel.cpp`, I created a custom instruction set to compute the dot product of two 2x2 matrices (A x B). 
+
+Given the following matrices in VRAM:
+
+```text
+Matrix A:      Matrix B:      
+[ 1  2 ]   x   [ 5  6 ]   
+[ 3  4 ]       [ 7  8 ]
+```
+The hardware executes the multiply-accumulate kernel and outputs the correct resulting matrix to VRAM indices 8-11:
+```text
+Result (A x B):
+[ 19  22 ]
+[ 43  50 ]
+```
+
+## Expected Output
+
+Because physical VRAM is a 1-dimensional contiguous array, the 2D matrices are flattened using row-major ordering. 
+
+* **Matrix A** is loaded into VRAM indices `0, 1, 2, 3`.
+* **Matrix B** is loaded into VRAM indices `4, 5, 6, 7`.
+
+The hardware executes the multiply-accumulate kernel and outputs the calculated matrix into the next available memory block at indices `8, 9, 10, 11`.
+
+```text
+Resulting Matrix (A x B) stored at VRAM [8] through [11]:
+
+Index:  [8]   [9]   [10]  [11]
+Value:   19    22    43    50
+```
+
+```text
+This is equivalent to what we found in the theoretical output!
+[ 19  22 ]
+[ 43  50 ]
+```
