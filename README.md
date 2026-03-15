@@ -22,7 +22,7 @@ The simulator is split into three core layers:
     * `RegisterFile`: 16 general-purpose floating-point registers per thread.
     * `ALU`: Executes math opcodes using switch-case logic.
     * `GPUCore`: The control unit that fetches instructions, manages the thread pool, and routes data between VRAM, Registers, and the ALU.
-3. **`kernel.cpp` (The Software):** Generates the vector of instructions (the assembly tape) that performs the matrix dot-product.
+3. **`kernel.cpp` (The Software):** Generates the vector of instructions (the assembly tape) that performs the operations.
 
 ## Example: Writing Assembly
 
