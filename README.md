@@ -70,9 +70,10 @@ Run the simulation:
 ```
 
 Finally, run the program:
+```
 Linux/macOS: ./build/virtual_gpu
 Windows: .\build\Debug\virtual_gpu.exe
-
+```
 
 ## Theoretical Output
 
