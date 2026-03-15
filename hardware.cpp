@@ -1,10 +1,7 @@
 #include "hardware.hpp"
 #include <iostream>
 
-// ==========================================
 // GLOBAL MEMORY
-// ==========================================
-
 GlobalMemory::GlobalMemory() {
     vram.resize(1024);
 }
@@ -19,10 +16,7 @@ void GlobalMemory::writeBlock(int start_index, const std::vector<float>& data) {
     }
 }
 
-// ==========================================
 // REGISTER FILE
-// ==========================================
-
 RegisterFile::RegisterFile() {
     registers.resize(16);
     threadIdx = 0;
@@ -32,10 +26,7 @@ void RegisterFile::writeRegister(int index, float value) {
     registers[index] = value;
 }
 
-// ==========================================
 // ARITHMETIC LOGIC UNIT (ALU)
-// ==========================================
-
 ArithmeticLogicUnit::ArithmeticLogicUnit() {
     last_calculated_result = 0.0f;
 }
@@ -64,10 +55,7 @@ float ArithmeticLogicUnit::execute(OpCode operation, float operand1, float opera
     return last_calculated_result;
 }
 
-// ==========================================
 // GPU CORE
-// ==========================================
-
 GPUCore::GPUCore() {
     threads.resize(4);
     for (int i = 0; i < 4; i++) {
