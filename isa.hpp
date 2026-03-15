@@ -8,8 +8,8 @@ enum class OpCode {
     SUBTRACT,
     MULTIPLY,
     DIVIDE,
-    FLOOR_DIVIDE, // Integer-style division
-    MODULO,       // Remainder
+    FLOOR_DIVIDE, 
+    MODULO,      
     LOAD,         // Direct VRAM access (Base + TID)
     STORE,        // Write to VRAM (Base + TID)
     LOAD_INDIRECT,// Pointer-based VRAM access
