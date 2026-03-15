@@ -60,13 +60,11 @@ Clone the repository and navigate to the project directory.
 Configure the build environment:
 ```Bash
 cmake -S . -B build
-Compile the executable:
 ```
 
 Compile the executable:
 ```Bash
 cmake --build build
-Run the simulation:
 ```
 
 Finally, run the program:
